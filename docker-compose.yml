@@ -3,7 +3,7 @@ version: '3'
 services:
 
     ts-compiler:
-        image:                   harmish/typescript
+        image:                   sandrokeil/typescript
         volumes:
             -                    ./src/frontend/ts:/workspace 
             -                    ./src/frontend/js:/output 
