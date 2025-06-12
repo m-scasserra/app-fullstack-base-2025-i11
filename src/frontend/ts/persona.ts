@@ -1,10 +1,6 @@
-class Persona implements Mostrable  {
+class Persona {
     public nombre: string;
     private dni: number;
-
-    public mostrarInfo(): string {
-        return this.obtenerDatos();
-    }
 
     constructor(nombre:string, dni:number) {
         this.nombre = nombre;
