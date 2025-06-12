@@ -28,20 +28,18 @@ class Main implements EventListenerObject {
                 if (xmlReq.status === 200) {
                     console.log(xmlReq.responseText);
                     let textArea = document.getElementById("textarea_1");
-                    textArea.innerHTML = xmlReq.responseText;
-
+                    //textArea.innerHTML = xmlReq.responseText;
+                    let div = document.getElementById("lista");
+                    div.innerHTML = "<h1>Devices</h1>";
+                    div.innerHTML += "<ol>";
                     let devices:Array<Device> = JSON.parse(xmlReq.responseText);
                     for (let o of devices) {
+                        div.innerHTML += "<li>" + o.id + " - " + o.name + " - " + o.description + " - " + o.state + " - " + "<button id='btnDevice_" + o.id + "'>Accion</button>" + "</li>";
                         console.log(o.id);
                         console.log(o.name);
                         console.log(o.description);
                         console.log(o.state);
                     }
-
-                    let div = document.getElementById("lista");
-                    div.innerHTML = "<h1>Titulo</h1>";
-                    div.innerHTML += "<p> description</p>";
-                    div.innerHTML += "<input type='button'>";
                 } else {
                     alert("Fallo la consulta");
                 }
