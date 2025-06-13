@@ -12,7 +12,16 @@ class Main implements EventListenerObject {
         let elementoClick = <HTMLInputElement>object.target;
 
         if (elementoClick.id === "btn_1") {
-            this.per.obtenerDatos();
+            let titulo = document.getElementById("titulo1");
+            let texto = <HTMLInputElement>document.getElementById("texto1");
+
+            titulo.innerHTML = "Titulo nuevo";
+            let nombre = texto.value;
+            texto.hidden = true;
+            console.log(texto.setAttribute("otro", "otro valor!"));
+            alert("El usuario es: " + nombre);
+            let div = document.getElementById("lista");
+            div.hidden = true;
         } else if (elementoClick.id === "btnMostrar" && object.type === "click") {
             this.consultarAlServidor();
         } else {
@@ -27,9 +36,9 @@ class Main implements EventListenerObject {
             if (xmlReq.readyState === 4) {
                 if (xmlReq.status === 200) {
                     console.log(xmlReq.responseText);
-                    let textArea = document.getElementById("textarea_1");
-                    //textArea.innerHTML = xmlReq.responseText;
+
                     let div = document.getElementById("lista");
+
                     div.innerHTML = "<h1>Devices</h1>";
                     div.innerHTML += "<ol>";
                     let devices:Array<Device> = JSON.parse(xmlReq.responseText);
@@ -47,8 +56,7 @@ class Main implements EventListenerObject {
         }
 
         xmlReq.open("GET", "http://localhost:8000/devices", true);
-        let oJson = {name:"nombre", passwd:"sdasadas"};
-        xmlReq.send(JSON.stringify(oJson));
+        xmlReq.send();
     }
 
     public mostrarInfo(): string {
