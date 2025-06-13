@@ -30,7 +30,7 @@ app.get('/devices/', function (req, res, next) {
             'type': 2,
         },
         {
-            'id': 2,
+            'id': 3,
             'name': 'Ventana',
             'description': 'de la cocina',
             'state': 1,

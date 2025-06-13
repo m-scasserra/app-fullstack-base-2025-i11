@@ -29,21 +29,38 @@
             <div class="row" style="background-color: gray;">
                 <div class="col s12 m8 l6 xl6" style="background-color: yellow;">
                     <h2>Datos de la persona</h2>
-                    <input value="Nombre">
-                    <input value="Apellido">
-                    <input type="button" value="Guardar">
+                    <div class="input-field">
+                        <label for="iNombre">Nombre</label>
+                        <input type="text" placeholder="Juan" id="iNombre">
+                    </div>
+                    <div class="input-field">
+                        <label for="iApellido">Apellido</label>
+                        <input type="text" id="iApellido">
+                    </div>
+
+                    <button class="btn-large red">
+                        <i class="material-icons right">save</i>
+                        Guardar 2
+                    </button>
                 </div>
                 <div class="col s12 m8 l6 xl6" style="background-color: rgb(111, 255, 0);">
                     <h2>Usuario</h2>
                     <input value="Usuario">
                     <input value="Password">
-                    <input type="button" value="Login">
+                    <div id="botones">
+                        <button id="btnLogin" class="btn-large miColor">
+                            <i class="material-icons left">person</i>
+                            Login
+                        </button>
+                    </div>
                 </div>
             </div>
             <br />
             <h3>Smart Home Web Client!</h3>
             <br />
             <div id="lista" class="row">
+                <ul id="lista" class="collection">
+                </ul>
                 <h1 id="titulo1">Titulo1</h1>
                 <h3>Titulo2</h3>
                 <h6>sub!</h6>

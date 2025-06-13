@@ -8,3 +8,21 @@ body {
 main {
     flex: 1 0 auto;
 }
+
+.miColor{
+    background-color: rgb(36, 154, 154);
+}
+
+#btnLogin{
+    background-color: rgb(154, 150, 36);
+}
+
+#botones{
+    text-align: center;
+}
+
+.title{
+    color: rgb(12, 128, 82);
+    font-size: large !important;
+    font-weight: bold;
+}
