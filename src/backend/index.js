@@ -25,22 +25,44 @@ app.get('/devices/', function (req, res, next) {
     })
 });
 
-app.get('/algo', function (req, res, next) {
-    console.log("Llego una peticion a algo");
-    res.status(409).send({ nombre: "Matias", apellido: "Ramos", dni: 2131 });
+app.post('/devices/', function (req, res, next) {
+    var device = req.body;
+    utils.query("INSERT INTO Devices (name, type, status) VALUES (?, ?, ?)", [device.name, device.type, device.status], function (error, respuesta, campos) {
+        if (error == null) {
+            console.log(respuesta);
+            res.status(201).send({ message: "Dispositivo creado correctamente" });
+        } else {
+            console.log(error);
+            res.status(409).send({ error: "Fallo la inserción" });
+        }
+    })
 });
 
-app.get('/algoInfo/:nombre', function (req, res, next) {
-    res.status(200).send({ saludo: "Hola " + req.params.nombre });
+app.delete('/devices/:id', function (req, res, next) {
+    var id = req.params.id;
+    utils.query("DELETE FROM Devices WHERE id = ?", [id], function (error, respuesta, campos) {
+        if (error == null) {
+            console.log(respuesta);
+            res.status(200).send({ message: "Dispositivo eliminado correctamente" });
+        } else {
+            console.log(error);
+            res.status(409).send({ error: "Fallo la eliminación" });
+        }
+    })
 });
 
-app.post('/algoInfoBody/', function (req, res, next) {
-    console.log(req.body);
-    if (req.body.nombre != undefined) {
-        res.status(200).send({ saludo: "Hola " + req.body.nombre });
-    } else {
-        res.status(409).send({ error: "Falta el nombre" });
-    }
+app.put('/devices/:id', function (req, res, next) {
+    var id = req.params.id;
+    var device = req.body;
+    utils.query("UPDATE Devices SET state = ? WHERE id = ?", [device.state, device.id], function (error, respuesta, campos) {
+        if (error == null) {
+            console.log(respuesta);
+            res.status(200).send({ message: "Dispositivo actualizado correctamente" });
+        } else {
+            console.log(error);
+            res.status(409).send({ error: "Fallo la actualización" });
+        }
+    })
 });
 
 app.listen(PORT, function (req, res) {

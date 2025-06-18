@@ -7,8 +7,10 @@
     <link type="text/css" rel="stylesheet" href="./static/css/styles.css" media="screen,projection" />
     <script type="text/javascript" src="./static/js/materialize.min.js"></script>
     <script type="text/javascript" src="js/persona.js"></script>
+    <script type="text/javascript" src="js/device.js"></script>
     <script type="text/javascript" src="js/usuario.js"></script>
     <script type="text/javascript" src="js/admin.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
@@ -26,61 +28,21 @@
         </nav>
         <!-- Page Body -->
         <div class="container">
-            <div class="row" style="background-color: gray;">
-                <div class="col s12 m8 l6 xl6" style="background-color: yellow;">
-                    <h2>Datos de la persona</h2>
-                    <div class="input-field">
-                        <label for="iNombre">Nombre</label>
-                        <input type="text" placeholder="Juan" id="iNombre">
-                    </div>
-                    <div class="input-field">
-                        <label for="iApellido">Apellido</label>
-                        <input type="text" id="iApellido">
-                    </div>
-
-                    <button class="btn-large red">
-                        <i class="material-icons right">save</i>
-                        Guardar 2
-                    </button>
-                </div>
-                <div class="col s12 m8 l6 xl6" style="background-color: rgb(111, 255, 0);">
-                    <h2>Usuario</h2>
-                    <input value="Usuario">
-                    <input value="Password">
-                    <div id="botones">
-                        <button id="btnLogin" class="btn-large miColor">
-                            <i class="material-icons left">person</i>
-                            Login
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <br />
             <h3>Smart Home Web Client!</h3>
             <br />
-            <div id="lista" class="row">
-                <ul id="lista" class="collection">
-                </ul>
-                <h1 id="titulo1">Titulo1</h1>
-                <h3>Titulo2</h3>
-                <h6>sub!</h6>
-                <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse quas natus optio dolorem vel odio
-                    ipsam, delectus expedita ipsum aspernatur perspiciatis ad. Corrupti nemo provident deleniti
-                    aperiam? Perferendis, eos dicta!
-                </p>
-                <label for="texto1">
-                    Ingrese su Nombre
-                </label>
-                <input unInvento="nada" type="text" id="texto1">
-            </div>
+             <ul id="tabs-swipe-demo" class="tabs">
+                <li class="tab col s3"><a class="active" href="#swipe-lista-todos">Todos</a></li>
+                <li class="tab col s3"><a href="#swipe-lista-living">Living</a></li>
+                <li class="tab col s3"><a href="#swipe-lista-cocina">Cocina</a></li>
+                <li class="tab col s3"><a href="#swipe-lista-balcon">Balcon</a></li>
+            </ul>
+            <div id="swipe-lista-todos" class="col s12"></div>
+            <div id="swipe-lista-living" class="col s12"></div>
+            <div id="swipe-lista-cocina" class="col s12"></div>
+            <div id="swipe-lista-balcon" class="col s12"></div>
             <div class="row">
-                <div class="input-field col s12 m12 l12 xl12">
-                    <textarea id="textarea_1" class="materialize-textarea" style="height: 150px;" readonly></textarea>
-                </div>
                 <div class="col s4 m4 l2 xl2">
-                    <button id="btn_1" class="btn waves-effect waves-light button-view">Click aca</button>
-                    <button id="btnMostrar" class="btn waves-effect waves-light button-view">Mostrar elementos</button>
+                    <button id="btnMostrar" class="btn waves-effect waves-light button-view">Refrescar</button>
                 </div>
             </div>
         </div>
