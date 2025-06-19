@@ -190,6 +190,7 @@ Completá todos los endpoints del backend con los metodos disponibles, los heade
         ]
     },
 }
+```
 
 2) Borrar el estado de un dispositivo
 
