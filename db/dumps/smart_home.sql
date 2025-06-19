@@ -45,7 +45,7 @@ CREATE TABLE `Devices` (
 -- Dumping data for table `Devices`
 --
 
-INSERT INTO `Devices` (`id`, `name`, `description`, `state`, `type`) VALUES
+INSERT INTO `Devices` (`id`, `name`, `description`, `state`, `location`, `type`) VALUES
 (1, 'Lampara 1', 'Luz living', 1, 0, 0),
 (2, 'Lampara 2', 'Luz living', 0, 0, 0),
 (3, 'Lampara 1', 'Luz cocina', 1, 1, 0),

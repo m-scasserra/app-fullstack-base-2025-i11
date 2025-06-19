@@ -2,7 +2,7 @@ class Device {
     id: number;
     name: string;
     description: string;
-    state: boolean;
+    state: number;
     location: number;
     type: number;
 }

@@ -26,8 +26,22 @@ app.get('/devices/', function (req, res, next) {
 });
 
 app.post('/devices/', function (req, res, next) {
+    /*
+    id: number;
+    name: string;
+    description: string;
+    state: boolean;
+    location: number;
+    type: number;
+    */
     var device = req.body;
-    utils.query("INSERT INTO Devices (name, type, status) VALUES (?, ?, ?)", [device.name, device.type, device.status], function (error, respuesta, campos) {
+    if (!device.name || typeof device.name !== 'string' ||
+        !device.description || typeof device.description !== 'string' ||
+        typeof device.location !== 'number' ||
+        typeof device.type !== 'number') {
+        return res.status(400).send({ error: "Datos del dispositivo inválidos" });
+    }
+    utils.query("INSERT INTO Devices (name, description, state, location, type) VALUES (?, ?, ?, ?, ?)", [device.name, device.description, 0, device.location, device.type], function (error, respuesta, campos) {
         if (error == null) {
             console.log(respuesta);
             res.status(201).send({ message: "Dispositivo creado correctamente" });
@@ -38,9 +52,9 @@ app.post('/devices/', function (req, res, next) {
     })
 });
 
-app.delete('/devices/:id', function (req, res, next) {
-    var id = req.params.id;
-    utils.query("DELETE FROM Devices WHERE id = ?", [id], function (error, respuesta, campos) {
+app.delete('/devices/', function (req, res, next) {
+    var device = req.body;
+    utils.query("DELETE FROM Devices WHERE id = ?", [device.id], function (error, respuesta, campos) {
         if (error == null) {
             console.log(respuesta);
             res.status(200).send({ message: "Dispositivo eliminado correctamente" });
@@ -54,16 +68,49 @@ app.delete('/devices/:id', function (req, res, next) {
 app.put('/devices/:id', function (req, res, next) {
     var id = req.params.id;
     var device = req.body;
-    utils.query("UPDATE Devices SET state = ? WHERE id = ?", [device.state, device.id], function (error, respuesta, campos) {
+
+    const fields = [];
+    const values = [];
+
+    // Add fields to update if they exist in the body
+    if (device.name !== undefined) {
+        fields.push("name = ?");
+        values.push(device.name);
+    }
+    if (device.description !== undefined) {
+        fields.push("description = ?");
+        values.push(device.description);
+    }
+    if (device.location !== undefined) {
+        fields.push("location = ?");
+        values.push(device.location);
+    }
+    if (device.type !== undefined) {
+        fields.push("type = ?");
+        values.push(device.type);
+    }
+    if (device.state !== undefined) {
+        fields.push("state = ?");
+        values.push(device.state);
+    }
+
+    if (fields.length === 0) {
+        return res.status(400).send({ error: "No fields to update provided" });
+    }
+
+    const query = `UPDATE Devices SET ${fields.join(', ')} WHERE id = ?`;
+    values.push(id);
+
+    utils.query(query, values, function (error, respuesta, campos) {
         if (error == null) {
-            console.log(respuesta);
             res.status(200).send({ message: "Dispositivo actualizado correctamente" });
         } else {
-            console.log(error);
+            console.error(error);
             res.status(409).send({ error: "Fallo la actualización" });
         }
-    })
+    });
 });
+
 
 app.listen(PORT, function (req, res) {
     console.log("NodeJS API running correctly");
