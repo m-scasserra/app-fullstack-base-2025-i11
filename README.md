@@ -190,6 +190,65 @@ Completá todos los endpoints del backend con los metodos disponibles, los heade
         ]
     },
 }
+
+2) Borrar el estado de un dispositivo
+
+```json
+{
+    "method": "delete",
+    "request_headers": "application/json",
+    "request_body": "",
+    "response_code": 200,
+    "request_body": {
+        "devices": [
+            {
+                "id": 1
+            }
+        ]
+    },
+}
+``` 
+
+3) Agregar un dispositivo
+
+```json
+{
+    "method": "post",
+    "request_headers": "application/json",
+    "request_body": "",
+    "response_code": 200,
+    "request_body": {
+        "devices": [
+            {
+                "name": "Luz",
+                "description": "Luz living",
+                "location": 2,
+                "type": 1,
+            }
+        ]
+    },
+}
+``` 
+
+4) Actualizar un dispositivo
+
+```json
+{
+    "method": "put",
+    "request_headers": "application/json",
+    "request_body": "",
+    "response_code": 200,
+    "request_body": {
+        "devices": [
+            {
+                "name": "Luz",
+                "description": "Luz living",
+                "location": 2,
+                "type": 1,
+            }
+        ]
+    },
+}
 ``` 
 
 </details>
